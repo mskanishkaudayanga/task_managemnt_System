@@ -7,7 +7,7 @@ import { useToast } from "../../components/ui/toast";
 import { Button } from "../../components/ui/button";
 import { Badge } from "../../components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
-import { Dialog } from "../../components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../../components/ui/dialog";
 import { Skeleton } from "../../components/layout/SkeletonLoader";
 import {
   Calendar,
@@ -312,25 +312,28 @@ export default function TaskDetail() {
       </Card>
 
       {/* Delete confirmation dialog */}
-      <Dialog
-        isOpen={isDeleteOpen}
-        onClose={() => setIsDeleteOpen(false)}
-        title="Delete Task"
-        description="Are you sure you want to permanently delete this task? This action cannot be undone."
-      >
-        <div className="flex justify-end gap-3 mt-4">
-          <Button variant="outline" size="sm" onClick={() => setIsDeleteOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="destructive"
-            size="sm"
-            disabled={deleteMutation.isPending}
-            onClick={() => deleteMutation.mutate()}
-          >
-            {deleteMutation.isPending ? "Deleting..." : "Permanently Delete"}
-          </Button>
-        </div>
+      <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Task</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to permanently delete this task? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end gap-3 mt-4">
+            <Button variant="outline" size="sm" onClick={() => setIsDeleteOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              size="sm"
+              disabled={deleteMutation.isPending}
+              onClick={() => deleteMutation.mutate()}
+            >
+              {deleteMutation.isPending ? "Deleting..." : "Permanently Delete"}
+            </Button>
+          </div>
+        </DialogContent>
       </Dialog>
     </div>
   );

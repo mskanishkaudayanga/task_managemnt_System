@@ -9,7 +9,7 @@ import { apiClient } from "../../lib/api-client";
 import { useToast } from "../../components/ui/toast";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
-import { Select } from "../../components/ui/select";
+import { NativeSelect } from "../../components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
 import { Skeleton } from "../../components/layout/SkeletonLoader";
 import { ArrowLeft, Save } from "lucide-react";
@@ -121,7 +121,7 @@ export default function TaskForm() {
       };
 
       if (isEditMode) {
-        return apiClient.put(`/tasks/${id}`, requestData);
+        return apiClient.patch(`/tasks/${id}`, requestData);
       }
       return apiClient.post("/tasks", requestData);
     },
@@ -226,11 +226,11 @@ export default function TaskForm() {
                 <label className="block text-xs font-semibold text-[#0f172a] uppercase tracking-wider mb-1.5">
                   Priority level
                 </label>
-                <Select {...register("priority")}>
+                <NativeSelect {...register("priority")}>
                   <option value="LOW">Low Priority</option>
                   <option value="MEDIUM">Medium Priority</option>
                   <option value="HIGH">High Priority</option>
-                </Select>
+                </NativeSelect>
                 {errors.priority && (
                   <p className="text-xs text-red-500 mt-1">{errors.priority.message}</p>
                 )}
@@ -260,14 +260,14 @@ export default function TaskForm() {
                 <label className="block text-xs font-semibold text-[#0f172a] uppercase tracking-wider mb-1.5">
                   Assign To User
                 </label>
-                <Select {...register("assignedToId")}>
+                <NativeSelect {...register("assignedToId")}>
                   <option value="">Leave Unassigned</option>
                   {usersList.map((usr) => (
                     <option key={usr.id} value={usr.id}>
                       {usr.name} ({usr.email})
                     </option>
                   ))}
-                </Select>
+                </NativeSelect>
                 {errors.assignedToId && (
                   <p className="text-xs text-red-500 mt-1">{errors.assignedToId.message}</p>
                 )}

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { apiClient } from "../../lib/api-client";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
-import { Select } from "../../components/ui/select";
+import { NativeSelect } from "../../components/ui/select";
 import { useToast } from "../../components/ui/toast";
 import { UserPlus } from "lucide-react";
 
@@ -122,10 +122,10 @@ export default function Register() {
               <label className="block text-xs font-semibold text-[#0f172a] uppercase tracking-wider mb-1.5">
                 Workspace Role
               </label>
-              <Select {...register("role")}>
+              <NativeSelect {...register("role")}>
                 <option value="USER">Standard User (Work on assigned tasks)</option>
                 <option value="ADMIN">Administrator (Create and assign tasks)</option>
-              </Select>
+              </NativeSelect>
               {errors.role && (
                 <p className="text-xs text-red-500 mt-1">{errors.role.message}</p>
               )}

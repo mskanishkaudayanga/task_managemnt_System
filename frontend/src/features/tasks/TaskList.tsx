@@ -6,7 +6,7 @@ import { apiClient } from "../../lib/api-client";
 import { useDebounce } from "../../hooks/use-debounce";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
-import { Select } from "../../components/ui/select";
+import { NativeSelect } from "../../components/ui/select";
 import { Card, CardContent } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { TaskListSkeleton } from "../../components/layout/SkeletonLoader";
@@ -163,28 +163,28 @@ export default function TaskList() {
 
         {/* Filter dropdowns */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <Select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <NativeSelect value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="">All Statuses</option>
             <option value="OPEN">Open</option>
             <option value="IN_PROGRESS">In Progress</option>
             <option value="TESTING">Testing</option>
             <option value="DONE">Completed</option>
-          </Select>
+          </NativeSelect>
 
-          <Select value={priority} onChange={(e) => setPriority(e.target.value)}>
+          <NativeSelect value={priority} onChange={(e) => setPriority(e.target.value)}>
             <option value="">All Priorities</option>
             <option value="LOW">Low</option>
             <option value="MEDIUM">Medium</option>
             <option value="HIGH">High</option>
-          </Select>
+          </NativeSelect>
 
-          <Select
+          <NativeSelect
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as "createdAt" | "dueDate")}
           >
             <option value="dueDate">Sort by Due Date</option>
             <option value="createdAt">Sort by Date Created</option>
-          </Select>
+          </NativeSelect>
 
           {/* Toggle sort order */}
           <Button variant="outline" onClick={toggleSortOrder} className="flex gap-2">

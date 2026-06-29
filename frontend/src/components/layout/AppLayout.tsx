@@ -2,7 +2,8 @@ import * as React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { Button } from "../ui/button";
-import { LayoutDashboard, CheckSquare, Kanban, LogOut, Menu, X, User } from "lucide-react";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { LayoutDashboard, CheckSquare, Kanban, LogOut, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -69,9 +70,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         {/* User Profile Panel */}
         <div className="pt-6 border-t border-slate-100 flex flex-col gap-4">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-semibold border border-slate-200">
-              <User className="h-5 w-5" />
-            </div>
+            <Avatar className="h-10 w-10 border border-slate-200 bg-slate-100 flex items-center justify-center text-slate-600 font-semibold">
+              <AvatarFallback>{user?.name ? user.name.substring(0, 2).toUpperCase() : "US"}</AvatarFallback>
+            </Avatar>
             <div className="min-w-0">
               <p className="text-sm font-semibold truncate leading-none mb-1">{user?.name}</p>
               <span className="inline-flex px-2 py-0.5 text-[10px] font-bold rounded bg-slate-100 text-[#64748b]">
@@ -164,9 +165,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               {/* User Panel */}
               <div className="pt-6 border-t border-slate-100 flex flex-col gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-semibold">
-                    <User className="h-4 w-4" />
-                  </div>
+                  <Avatar className="h-9 w-9 border border-slate-200 bg-slate-100 flex items-center justify-center text-slate-600 font-semibold">
+                    <AvatarFallback>{user?.name ? user.name.substring(0, 2).toUpperCase() : "US"}</AvatarFallback>
+                  </Avatar>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold truncate leading-none mb-1">{user?.name}</p>
                     <span className="inline-flex px-1.5 py-0.5 text-[9px] font-bold rounded bg-slate-100 text-[#64748b]">
