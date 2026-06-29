@@ -4,12 +4,13 @@
   "description": "Production-ready Task Management System REST API",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm install && tsc",
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma",
